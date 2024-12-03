@@ -1,0 +1,27 @@
+<div class="container">
+    <h2>Assign Dashboards to Portlet</h2>
+  
+    <div class="form-group">
+      <label for="portletRow">Portlet Row:</label>
+      <input id="portletRow" class="form-control" type="text" [value]="portlet?.row || 'Loading...'" readonly>
+    </div>
+  
+    <!-- Select Chart -->
+    <div class="form-group">
+      <label for="dashboardSelect">Select Dashboard:</label>
+      <select id="dashboardSelect" class="form-control" [(ngModel)]="selectedDashboardId">
+        <option *ngFor="let dashboard of dashboard" [value]="dashboard.id">{{ dashboard.title }}</option>
+      </select>
+    </div>
+  
+    <button (click)="affecterDashboardAPortlet()" class="btn btn-primary">Assign</button>
+  
+
+  </div>
+  
+
+
+
+
+
+

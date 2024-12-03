@@ -1,0 +1,85 @@
+<div class="sidebar-wrapper" *ngIf="isUser">
+  <div class="logo">
+    <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+      <div class="logo-image-small">
+        <img src="assets/img/angular2-logo.png">
+      </div>
+    </a>
+    <a href="https://www.creative-tim.com" class="simple-text logo-normal">
+      Welcome  
+    </a>
+    {{ username }}
+  </div>
+  <ul class="nav">
+    <li *ngFor="let menuItem of menuItems" routerLinkActive="active" class="{{ menuItem.class }}">
+      <a [routerLink]="[menuItem.path]">
+        <i class="nc-icon {{ menuItem.icon }}"></i>
+        <p>{{ menuItem.title }}</p>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="sidebar-wrapper" [ngClass]="{'noir': isAdmin}" [ngStyle]="isAdmin ? {'background-color': '#343a40', 'color': 'white'} : {}">
+  <style>
+    /* Styles spécifiques pour la barre latérale de l'administrateur */
+    .noir .sidebar-wrapper,
+    .noir .sidebar-wrapper a,
+    .noir .sidebar-wrapper p,
+    .noir .sidebar-wrapper i {
+      color: white !important;
+    }
+
+    /* Couleur de fond pour l'administrateur */
+    .noir {
+      background-color: #343a40 !important; /* Couleur similaire à bg-dark */
+    }
+
+    /* Spécifique à l'administrateur - couleur de fond des éléments actifs */
+    .noir .nav li.active a {
+      background-color: #495057; /* Couleur plus claire pour les éléments actifs */
+    }
+
+    /* Couleur de fond et texte des éléments actifs */
+    .noir .nav li.active a {
+      background-color: #495057; /* Couleur similaire aux éléments actifs de Bootstrap */
+      color: white;
+    }
+
+    /* Assure que les liens non actifs restent blancs dans la barre latérale */
+    .noir .nav li a {
+      color: white !important;
+    }
+
+    /* Assure que les icônes sont blanches dans la section administrateur */
+    .noir .nav li a i {
+      color: white !important;
+    }
+
+    /* Assure que le texte "Welcome" reste clair uniquement pour l'administrateur */
+    .noir .logo a.simple-text.logo-normal {
+      color: #f8f9fa !important; /* Utilisez une couleur claire comme #f8f9fa pour le texte clair */
+    }
+  </style>
+
+  <div class="logo">
+    <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+      <div class="logo-image-small">
+        <img src="assets/img/angular2-logo.png">
+      </div>
+    </a>
+    <a href="https://www.creative-tim.com" class="simple-text logo-normal">
+      Welcome  
+    </a>
+    mr administrator
+  </div>
+
+  <ul class="nav">
+    <li *ngFor="let menuItem of menuItems" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="{{ menuItem.class }}">
+      <a [routerLink]="[menuItem.path]">
+        <i class="nc-icon {{ menuItem.icon }}"></i>
+        <p>{{ menuItem.title }}</p>
+      </a>
+    </li>
+  </ul>
+</div>

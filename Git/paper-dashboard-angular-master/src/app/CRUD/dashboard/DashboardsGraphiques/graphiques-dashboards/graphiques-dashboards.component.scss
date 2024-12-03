@@ -1,0 +1,42 @@
+.portlet-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Deux colonnes */
+  gap: 10px;
+}
+
+.portlet {
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.left-top {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.right-top {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.left-bottom {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.right-bottom {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.bottom {
+  grid-column: span 2; /* Occupe deux colonnes */
+  grid-row: 2; /* Sur la troisième ligne */
+}
+
+.top {
+  grid-column: span 2; /* Occupe deux colonnes */
+  grid-row: 1; /* Sur la première ligne */
+}
+

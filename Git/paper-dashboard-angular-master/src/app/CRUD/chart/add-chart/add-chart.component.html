@@ -1,0 +1,149 @@
+<div class="row">
+  <!-- Existing card columns -->
+    <!-- Nouvelle colonne de carte pour le formulaire de création de graphique -->
+
+  <!-- New card column for dashboard creation form -->
+  <div class="col-lg-3 col-md-6 col-sm-6">
+    <div>
+      <div class="submit-form">
+                <!-- Affiche le formulaire seulement si le graphique n'est pas encore soumis -->
+
+        <div *ngIf="!submitted">
+                    <!-- Champ pour le titre du graphique -->
+
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input
+              type="text"
+              class="form-control"
+              id="title"
+              required
+              [(ngModel)]="chart.title" 
+              name="title" 
+            />
+            <!--[(ngModel)]="chart.title" => Liaison bidirectionnelle avec le modèle -->
+
+          </div>
+                    <!-- Champ pour le type de graphique -->
+
+          <div class="form__group field">
+            <label for="type">Type</label><br>
+            <select [(ngModel)]="chart.type" name="type" class="form-control" required>
+              <option *ngFor="let fileType of Charttypes" [value]="fileType">
+                {{ charttypeLabelMapping[fileType] }}
+              </option>
+            </select>
+          </div>
+        <!--charttypeLabelMapping[fileType]=>Affichage du type de graphique avec une étiquette -->
+          
+          <div class="form__group field">
+            <label for="datasource">Datasource</label><br>
+            <select [(ngModel)]="idDatasource" name="datasource" class="form-control" (change)="IndexData($event.target.value)" required>
+              <option *ngFor="let datasource of datasources" [value]="datasource.id">
+                {{ datasource.type }}
+              </option>
+            </select>
+          </div>
+          <!--$event : C'est l'objet représentant l'événement déclenché, contenant des informations sur l'événement, y compris la valeur sélectionnée.
+    $event.target : Cela désigne l'élément HTML (dans ce cas, le <select>) qui a déclenché l'événement.
+
+$event.target.value : Cette expression permet de récupérer la valeur de l'option actuellement sélectionnée dans le menu déroulant. Par exemple, si l'utilisateur sélectionne "Index1", cela renverra "Index1".
+
+
+
+
+
+
+
+-->
+          
+          <!-- Champ pour sélectionner un index, visible seulement si des indices sont disponibles -->
+          <div class="form-group" *ngIf="indices.length > 0">
+            <label for="index">Index:</label>
+            <select class="form-control" id="index" [(ngModel)]="chart.index" name="index" (change)="onIndexChange($event.target.value)" required>
+              <option *ngFor="let index of indices" [value]="index">
+                {{ index }}<!-- Affichage de chaque index disponible -->
+              </option>
+            </select>
+          </div>
+<!--1)chart.index dans [(ngModel)]="chart.index" :
+
+Cette propriété est utilisée pour lier la valeur sélectionnée par l'utilisateur à la variable chart.index. Lorsque l'utilisateur sélectionne une option, la valeur de cette option (qui est un index dans ce cas) est affectée à chart.index.
+2)//{{index}}//index dans *ngFor="let index of indices" :
+
+Ici, index est une variable temporaire qui représente chaque élément individuel de la liste indices. Lors de l'itération avec *ngFor, Angular crée une nouvelle instance de index pour chaque élément dans indices.Par conséquent, index est la valeur que vous voulez afficher et associer à chaque option du menu déroulant.
+En résumé :
+index est utilisé dans le <option> pour représenter la valeur individuelle de chaque élément dans le menu déroulant.
+chart.index est utilisé dans [(ngModel)] pour lier la valeur sélectionnée à la propriété chart.index dans votre modèle.
+-->
+          <div class="form-group">
+            <label for="x_axis">X Axis</label>
+            <select
+              class="form-control"
+              id="x_axis"
+              required
+              [(ngModel)]="chart.x_axis"
+              name="x_axis"
+            >
+              <option *ngFor="let attribute of attributes" [value]="attribute">{{ attribute }}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="y_axis">Y Axis</label>
+            <select
+              class="form-control"
+              id="y_axis"
+              required
+              [(ngModel)]="chart.y_axis"
+              name="y_axis"
+            >
+              <option *ngFor="let attribute of attributes" [value]="attribute">{{ attribute }}</option>
+            </select>
+          </div>
+
+
+
+          <div class="form-group" *ngIf="chart.type !== 'Pie' && chart.type !== 'Table' && chart.type !== 'Line' && chart.type !== 'Area'">
+            <label for="aggreg">Aggregation</label>
+            <select
+              class="form-control"
+              id="aggreg"
+              required
+              [(ngModel)]="chart.aggreg"
+              name="aggreg"
+            >
+              <option *ngFor="let attribute of attributes" [value]="attribute">{{ attribute }}</option>
+            </select>
+          </div>
+          
+
+
+          
+
+          <div class="form-group">
+            <label for="creator_id">creator_id</label>
+            <input
+              type="text"
+              class="form-control"
+              id="creator_id"
+              required
+              [attr.disabled]="true"
+              [(ngModel)]="user.username" 
+              name="creator_id"
+            />
+          </div>
+  
+            <button (click)="saveChart()" class="btn btn-success"><i class="fa fa-check"></i> Save</button>
+          </div>
+          <div *ngIf="submitted">
+            <h4>Chart was submitted successfully!</h4>
+            <button class="btn btn-success" (click)="newChart()">Add</button>
+            <button class="btn btn-success" (click)="gotoList()">{{ navbarTitle }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+

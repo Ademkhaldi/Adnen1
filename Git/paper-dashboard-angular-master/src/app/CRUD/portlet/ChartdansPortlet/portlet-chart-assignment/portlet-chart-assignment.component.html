@@ -1,0 +1,25 @@
+<div class="container">
+    <h2>Assign Chart to Portlet</h2>
+  
+    <!-- Display datasource type in a form control -->
+    <div class="form-group">
+      <label for="portletRow">Portlet Row:</label>
+      <input id="portletRow" class="form-control" type="text" [value]="portlet?.row || 'Loading...'" readonly>
+    </div>
+  
+    <!-- Select Chart -->
+    <div class="form-group">
+      <label for="chartSelect">Select Chart:</label>
+      <select id="chartSelect" class="form-control" [(ngModel)]="selectedChartId">
+        <option *ngFor="let chart of chart" [value]="chart.id">{{ chart.title }}</option>
+      </select>
+    </div>
+  
+    <button (click)="affecterChartAPortlet()" class="btn btn-primary">Assign</button>
+  
+
+  </div>
+  
+
+
+

@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <!-- Title card -->
+    <div class="col-md-12 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="text-center" style="font-size: 19px;">{{ chartTitle }}</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart card -->
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div *ngIf="hasData()">
+            <canvas #histogrammeCanvas></canvas> <!-- Canvas element referenced by ViewChild -->
+          </div>
+          <div *ngIf="!hasData()">
+            <p class="text-center">No data available to display.</p>
+          </div>
+        </div>
+      </div>
+      <button *ngIf="showButton" type="button" class="btn btn-custom-cancel mr-1" (click)="return()">
+        <i class="fa fa-undo"></i>
+      </button>
+    </div>
+  </div>
+</div>

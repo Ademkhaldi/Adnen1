@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row">
+      <!-- Card for the title -->
+      <div class="col-md-12 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="text-center" style="font-size: 19px;">{{ chartTitle }}</h2>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Card for the pie chart -->
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <canvas #chartCanvas></canvas> <!-- Dynamic canvas reference -->
+          </div>
+        </div>
+        <button *ngIf="showButton" type="button" class="btn btn-custom-cancel mr-1" (click)="return()">
+          <i class="fa fa-undo"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
